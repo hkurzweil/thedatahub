@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The DataHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            color: #4C4C4C;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #EF4A23;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #EF4A23, #6290C8);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #6290C8;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #B8B6B6;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .login-btn {
+            background: #6290C8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #5380b8;
+        }
+
+        /* Landing Page Styles */
+        .landing-page {
+            display: block;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(239, 74, 35, 0.05), rgba(98, 144, 200, 0.05));
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4C4C4C;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #4C4C4C;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: #EF4A23;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cta-primary:hover {
+            background: #d63e1f;
+            transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: #6290C8;
+            border: 2px solid #6290C8;
+            padding: 13px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cta-secondary:hover {
+            background: #6290C8;
+            color: white;
+        }
+
+        .features-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4C4C4C;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            background: #f8f9fa;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-icon.orange {
+            background: #EF4A23;
+        }
+
+        .feature-icon.blue {
+            background: #6290C8;
+        }
+
+        .feature-icon.peach {
+            background: #F9C6A4;
+            color: #4C4C4C;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4C4C4C;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: #4C4C4C;
+            line-height: 1.6;
+        }
+
+        .subjects-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .subjects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .subjects-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4C4C4C;
+            margin-bottom: 1rem;
+        }
+
+        .subjects-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #4C4C4C;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .grade-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+        }
+
+        .grade-level-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .grade-level-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #EF4A23;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .subject-button {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: 500;
+            color: #4C4C4C;
+        }
+
+        .subject-button:hover {
+            border-color: #6290C8;
+            background: rgba(98, 144, 200, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .subject-button.active {
+            border-color: #EF4A23;
+            background: rgba(239, 74, 35, 0.1);
+            color: #EF4A23;
+        }
+
+        /* Course Detail Page Styles */
+        .course-page {
+            display: none;
+        }
+
+        .main-container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid #e9ecef;
+            padding: 1.5rem 0;
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-title {
+            padding: 0 1.5rem 0.5rem;
+            font-size: 14px;
+            font-weight: 600;
+            color: #B8B6B6;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-item {
+            padding: 12px 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-item:hover {
+            background: #f8f9fa;
+        }
+
+        .nav-item.active {
+            background: rgba(239, 74, 35, 0.1);
+            border-left-color: #EF4A23;
+            color: #EF4A23;
+            font-weight: 500;
+        }
+
+        .chevron {
+            color: #B8B6B6;
+            transition: transform 0.3s;
+        }
+
+        .nav-item:hover .chevron {
+            transform: translateX(3px);
+        }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .breadcrumb {
+            color: #B8B6B6;
+            margin-bottom: 1rem;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: #6290C8;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .subject-header {
+            margin-bottom: 2rem;
+        }
+
+        .subject-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #4C4C4C;
+            margin-bottom: 0.5rem;
+        }
+
+        .subject-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #B8B6B6;
+        }
+
+        .subject-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #4C4C4C;
+            max-width: 800px;
+        }
+
+        .highlight-link {
+            color: #6290C8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .topic-section {
+            margin-bottom: 3rem;
+        }
+
+        .topic-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .topic-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #4C4C4C;
+            margin-bottom: 0.5rem;
+        }
+
+        .topic-description {
+            color: #4C4C4C;
+            line-height: 1.6;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .lesson-card.data-viz {
+            border-left-color: #6290C8;
+        }
+
+        .lesson-card.statistical {
+            border-left-color: #EF4A23;
+        }
+
+        .lesson-card.analysis {
+            border-left-color: #F9C6A4;
+        }
+
+        .lesson-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .lesson-icon.data-viz {
+            background: #6290C8;
+        }
+
+        .lesson-icon.statistical {
+            background: #EF4A23;
+        }
+
+        .lesson-icon.analysis {
+            background: #F9C6A4;
+            color: #4C4C4C;
+        }
+
+        .lesson-info {
+            flex: 1;
+        }
+
+        .lesson-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #4C4C4C;
+            margin-bottom: 0.25rem;
+        }
+
+        .lesson-author {
+            font-size: 14px;
+            color: #6290C8;
+            background: rgba(98, 144, 200, 0.1);
+            padding: 2px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-type {
+            font-size: 12px;
+            color: #B8B6B6;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .lesson-description {
+            color: #4C4C4C;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-resources {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .resource-tag {
+            background: #f8f9fa;
+            color: #4C4C4C;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            border: 1px solid #e9ecef;
+        }
+
+        .resource-tag.dataset {
+            background: rgba(239, 74, 35, 0.1);
+            color: #EF4A23;
+            border-color: rgba(239, 74, 35, 0.2);
+        }
+
+        .resource-tag.interactive {
+            background: rgba(98, 144, 200, 0.1);
+            color: #6290C8;
+            border-color: rgba(98, 144, 200, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .grade-levels {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                transition: left 0.3s;
+                z-index: 1000;
+                height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-bar {
+                margin: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo" onclick="showLanding()">
+            <div class="logo-icon">D</div>
+            The DataHub
+        </div>
+        <div class="search-bar">
+            <div class="search-icon">🔍</div>
+            <input type="text" placeholder="Search topics, datasets, or lessons...">
+        </div>
+        <div class="user-menu">
+            <button class="login-btn">Sign In</button>
+        </div>
+    </header>
+
+    <!-- Landing Page -->
+    <div id="landing" class="landing-page">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Transform Education with Data Science</h1>
+                <p class="hero-subtitle">
+                    The DataHub provides K-12 educators with ready-to-use lessons that teach core curriculum through the lens of data science. Real datasets, engaging activities, and seamless integration with your existing standards.
+                </p>
+                <div class="cta-buttons">
+                    <button class="cta-primary" onclick="scrollToSubjects()">Explore Subjects</button>
+                    <button class="cta-secondary">Watch Demo</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="features-container">
+                <h2 class="features-title">Why Choose The DataHub?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon orange">📊</div>
+                        <h3 class="feature-title">Real-World Datasets</h3>
+                        <p class="feature-description">Every lesson includes authentic datasets from NASA, NOAA, Census Bureau, and other trusted sources that students can download and analyze.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon blue">🎯</div>
+                        <h3 class="feature-title">Standards-Aligned</h3>
+                        <p class="feature-description">All activities align with state and national standards while building essential data literacy skills students need for the 21st century.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon peach">⚡</div>
+                        <h3 class="feature-title">Ready to Use</h3>
+                        <p class="feature-description">Download lesson plans, datasets, and interactive tools immediately. No prep time required - just print and teach.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="subjects" class="subjects-section">
+            <div class="subjects-container">
+                <h2 class="subjects-title">Find Your Subject</h2>
+                <p class="subjects-subtitle">Browse by grade level to find data science lessons that seamlessly integrate with your curriculum</p>
+                
+                <div class="grade-levels">
+                    <div class="grade-level-card">
+                        <h3 class="grade-level-title">
+                            🎓 Middle School (Grades 6-8)
+                        </h3>
+                        <div class="subjects-grid">
+                            <button class="subject-button">Grade 6 Math</button>
+                            <button class="subject-button">Grade 6 Science</button>
+                            <button class="subject-button">Grade 6 Social Studies</button>
+                            <button class="subject-button">Grade 7 Math</button>
+                            <button class="subject-button">Grade 7 Science</button>
+                            <button class="subject-button">Grade 7 Social Studies</button>
+                            <button class="subject-button active" onclick="showEarthScience()">Grade 8 Earth Science</button>
+                            <button class="subject-button">Grade 8 Math</button>
+                        </div>
+                    </div>
+
+                    <div class="grade-level-card">
+                        <h3 class="grade-level-title">
+                            🎓 High School (Grades 9-12)
+                        </h3>
+                        <div class="subjects-grid">
+                            <button class="subject-button">Biology</button>
+                            <button class="subject-button">Chemistry</button>
+                            <button class="subject-button">Physics</button>
+                            <button class="subject-button">Algebra 1</button>
+                            <button class="subject-button">Geometry</button>
+                            <button class="subject-button">Algebra 2</button>
+                            <button class="subject-button">US History</button>
+                            <button class="subject-button">World Geography</button>
+                            <button class="subject-button">English 9</button>
+                            <button class="subject-button">English 10</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Course Detail Page -->
+    <div id="course" class="course-page">
+        <div class="main-container">
+            <nav class="sidebar">
+                <div class="nav-section">
+                    <div class="nav-title">Middle School</div>
+                    <div class="nav-item">
+                        <span>Grade 6 Math</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Grade 6 Science</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Grade 6 Social Studies</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Grade 7 Math</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Grade 7 Science</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Grade 7 Social Studies</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item active">
+                        <span>Grade 8 Earth Science</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Grade 8 Math</span>
+                        <span class="chevron">›</span>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-title">High School</div>
+                    <div class="nav-item">
+                        <span>Biology</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Chemistry</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Physics</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Algebra 1</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Geometry</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Algebra 2</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>US History</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>World Geography</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>English 9</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>English 10</span>
+                        <span class="chevron">›</span>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="content">
+                <div class="breadcrumb">
+                    <a onclick="showLanding()">The DataHub</a> / <a href="#">Middle School</a> / Grade 8 Earth Science
+                </div>
+
+                <div class="subject-header">
+                    <h1 class="subject-title">Grade 8 Earth Science</h1>
+                    <div class="subject-meta">
+                        <span>By DataHub Team</span>
+                        <span>•</span>
+                        <span>28 lessons</span>
+                        <span>•</span>
+                        <span>15 datasets</span>
+                    </div>
+                    <p class="subject-description">
+                        Explore Earth's systems through the lens of data science. Students will analyze real-world datasets to understand weather patterns, climate change, geological processes, and environmental science while building essential data literacy skills. Each lesson aligns with NGSS standards and provides scaffolded data science instruction. <a href="#" class="highlight-link">View full curriculum guide</a>.
+                    </p>
+                </div>
+
+                <div class="topic-section">
+                    <div class="topic-header">
+                        <h2 class="topic-title">Weather and Climate Patterns</h2>
+                        <p class="topic-description">Students analyze meteorological data to understand weather systems, climate patterns, and the difference between weather and climate using statistical analysis and data visualization.</p>
+                    </div>
+                    <div class="lessons-grid">
+                        <div class="lesson-card data-viz">
+                            <div class="lesson-header">
+                                <div class="lesson-icon data-viz">📊</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Analyzing Local Weather Patterns</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Data Visualization</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Students create visualizations using 10 years of local weather station data to identify patterns in temperature, precipitation, and seasonal changes. Introduces basic graphing and trend analysis.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">📈 Weather Dataset (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag interactive">🌐 Interactive Charts</span>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card statistical">
+                            <div class="lesson-header">
+                                <div class="lesson-icon statistical">🌡️</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Climate vs Weather: Statistical Analysis</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Statistical Analysis</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Using 30+ years of temperature data, students calculate means, medians, and ranges to distinguish between short-term weather events and long-term climate patterns.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">📊 Climate Dataset (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag">🧮 Calculation Guide</span>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card analysis">
+                            <div class="lesson-header">
+                                <div class="lesson-icon analysis">🌪️</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Extreme Weather Event Analysis</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Data Analysis</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Students investigate patterns in extreme weather events (hurricanes, tornadoes, heat waves) using NOAA data to understand frequency, intensity, and geographic distribution.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">⛈️ Storm Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag interactive">🗺️ Interactive Map</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-section">
+                    <div class="topic-header">
+                        <h2 class="topic-title">Earth's Water Systems</h2>
+                        <p class="topic-description">Explore the water cycle, ocean currents, and water quality through data analysis of hydrological datasets and water monitoring stations.</p>
+                    </div>
+                    <div class="lessons-grid">
+                        <div class="lesson-card data-viz">
+                            <div class="lesson-header">
+                                <div class="lesson-icon data-viz">💧</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Water Cycle Data Visualization</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Data Visualization</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Students create interactive diagrams showing precipitation, evaporation, and groundwater data to visualize the water cycle at local and global scales.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">🌊 Hydrology Dataset (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag interactive">🎮 Interactive Simulation</span>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card statistical">
+                            <div class="lesson-header">
+                                <div class="lesson-icon statistical">🏞️</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">River Flow Rate Analysis</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Statistical Analysis</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Using USGS stream gauge data, students analyze seasonal variations in river flow rates and correlate them with precipitation patterns and human water usage.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">🏔️ Stream Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag">📈 Analysis Templates</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-section">
+                    <div class="topic-header">
+                        <h2 class="topic-title">Geological Processes and Earth's Structure</h2>
+                        <p class="topic-description">Investigate earthquake patterns, volcanic activity, and geological formations using seismic data and geological surveys.</p>
+                    </div>
+                    <div class="lessons-grid">
+                        <div class="lesson-card analysis">
+                            <div class="lesson-header">
+                                <div class="lesson-icon analysis">🌋</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Earthquake Pattern Investigation</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Geospatial Analysis</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Students map global earthquake data to identify patterns along tectonic plate boundaries and analyze the relationship between magnitude, depth, and location.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">🌍 Earthquake Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag interactive">🗺️ Mapping Tool</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        function showLanding() {
+            document.getElementById('landing').style.display = 'block';
+            document.getElementById('course').style.display = 'none';
+        }
+
+        function showEarthScience() {
+            document.getElementById('landing').style.display = 'none';
+            document.getElementById('course').style.display = 'block';
+        }
+
+        function scrollToSubjects() {
+            document.getElementById('subjects').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+    </script>
+</body>
+</html>
