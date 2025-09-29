@@ -85,6 +85,33 @@
             gap: 1rem;
         }
 
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: rgba(98, 144, 200, 0.1);
+            border-radius: 20px;
+            color: #6290C8;
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            background: transparent;
+            color: #6290C8;
+            border: 2px solid #6290C8;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #6290C8;
+            color: white;
+        }
+
         .login-btn {
             background: #6290C8;
             color: white;
@@ -100,9 +127,292 @@
             background: #5380b8;
         }
 
+        /* Login Page */
+        .login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            background: linear-gradient(135deg, rgba(239, 74, 35, 0.05), rgba(98, 144, 200, 0.05));
+        }
+
+        .login-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-container h2 {
+            color: #4C4C4C;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4C4C4C;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #6290C8;
+        }
+
+        .login-submit {
+            width: 100%;
+            background: #EF4A23;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-submit:hover {
+            background: #d63e1f;
+        }
+
+        .error-message {
+            color: #EF4A23;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            display: none;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2rem;
+            color: #4C4C4C;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-header p {
+            color: #B8B6B6;
+            font-size: 1.1rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .my-courses {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .my-courses h2 {
+            color: #4C4C4C;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .course-card {
+            background: rgba(98, 144, 200, 0.05);
+            border-left: 4px solid #6290C8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .course-card h3 {
+            color: #4C4C4C;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-meta {
+            color: #B8B6B6;
+            font-size: 0.9rem;
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #EF4A23, #6290C8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .ai-header h2 {
+            color: #4C4C4C;
+            font-size: 1.5rem;
+        }
+
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 12px;
+        }
+
+        .message.atlas {
+            align-items: flex-start;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .message.atlas .message-avatar {
+            background: linear-gradient(135deg, #EF4A23, #6290C8);
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: #6290C8;
+            color: white;
+        }
+
+        .message-content {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            max-width: 70%;
+            line-height: 1.5;
+        }
+
+        .message.user .message-content {
+            background: #6290C8;
+            color: white;
+        }
+
+        .resource-link {
+            display: inline-block;
+            color: #EF4A23;
+            font-weight: 500;
+            margin: 8px 0;
+            text-decoration: none;
+            border-bottom: 2px solid #EF4A23;
+            transition: all 0.3s;
+        }
+
+        .resource-link:hover {
+            color: #d63e1f;
+        }
+
+        .chat-input-container {
+            display: flex;
+            gap: 12px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: #6290C8;
+        }
+
+        .chat-send {
+            background: #EF4A23;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .chat-send:hover {
+            background: #d63e1f;
+        }
+
         /* Landing Page Styles */
         .landing-page {
-            display: block;
+            display: none;
         }
 
         .hero-section {
@@ -326,7 +636,7 @@
             color: #EF4A23;
         }
 
-        /* Course Detail Page Styles */
+        /* Course Detail Page */
         .course-page {
             display: none;
         }
@@ -341,6 +651,8 @@
             background: white;
             border-right: 1px solid #e9ecef;
             padding: 1.5rem 0;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
         }
 
         .nav-section {
@@ -389,6 +701,8 @@
         .content {
             flex: 1;
             padding: 2rem;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
         }
 
         .breadcrumb {
@@ -596,14 +910,7 @@
             }
 
             .sidebar {
-                width: 100%;
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                transition: left 0.3s;
-                z-index: 1000;
-                height: calc(100vh - 80px);
-                overflow-y: auto;
+                display: none;
             }
 
             .content {
@@ -615,25 +922,92 @@
             }
 
             .search-bar {
-                margin: 0 1rem;
+                display: none;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <div class="logo" onclick="showLanding()">
+        <div class="logo" onclick="goHome()">
             <div class="logo-icon">D</div>
             The DataHub
         </div>
-        <div class="search-bar">
+        <div class="search-bar" id="searchBar">
             <div class="search-icon">🔍</div>
             <input type="text" placeholder="Search topics, datasets, or lessons...">
         </div>
-        <div class="user-menu">
-            <button class="login-btn">Sign In</button>
+        <div class="user-menu" id="userMenu">
+            <button class="login-btn" onclick="showLogin()">Sign In</button>
         </div>
     </header>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="login-page" style="display: none;">
+        <div class="login-container">
+            <h2>Welcome to The DataHub</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-submit">Sign In</button>
+                <p class="error-message" id="errorMessage">Invalid username or password</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard">
+        <div class="dashboard-header">
+            <h1>Welcome back, Hannah! 👋</h1>
+            <p>Ready to inspire your students with data-driven learning?</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="my-courses">
+                <h2>📚 My Courses</h2>
+                <div class="course-card">
+                    <h3>High School Biology</h3>
+                    <p class="course-meta">Grade 10 • 28 students • 5 resources used</p>
+                </div>
+                <div class="course-card">
+                    <h3>High School Chemistry</h3>
+                    <p class="course-meta">Grade 11 • 24 students • 3 resources used</p>
+                </div>
+            </div>
+
+            <div class="ai-assistant">
+                <div class="ai-header">
+                    <div class="ai-avatar">🤖</div>
+                    <div>
+                        <h2>DataPal</h2>
+                        <p style="color: #B8B6B6; font-size: 0.9rem;">Your Data Science Teaching Companion</p>
+                    </div>
+                </div>
+                <div class="chat-container" id="chatContainer">
+                    <div class="message atlas">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            Hi Hannah! I'm DataPal, your companion for data science education. How can I help you create amazing data-driven lessons today?
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Ask DataPal about resources, datasets, or teaching ideas...">
+                    <button class="chat-send" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Landing Page -->
     <div id="landing" class="landing-page">
@@ -684,14 +1058,12 @@
                             🎓 Middle School (Grades 6-8)
                         </h3>
                         <div class="subjects-grid">
-                            <button class="subject-button">Grade 6 Math</button>
-                            <button class="subject-button">Grade 6 Science</button>
-                            <button class="subject-button">Grade 6 Social Studies</button>
-                            <button class="subject-button">Grade 7 Math</button>
-                            <button class="subject-button">Grade 7 Science</button>
-                            <button class="subject-button">Grade 7 Social Studies</button>
-                            <button class="subject-button active" onclick="showEarthScience()">Grade 8 Earth Science</button>
-                            <button class="subject-button">Grade 8 Math</button>
+                            <button class="subject-button active" onclick="showEarthScience()">Earth Science</button>
+                            <button class="subject-button">Physical Science</button>
+                            <button class="subject-button">Life Science</button>
+                            <button class="subject-button">World History</button>
+                            <button class="subject-button">US History</button>
+                            <button class="subject-button">Civics</button>
                         </div>
                     </div>
 
@@ -703,13 +1075,11 @@
                             <button class="subject-button">Biology</button>
                             <button class="subject-button">Chemistry</button>
                             <button class="subject-button">Physics</button>
-                            <button class="subject-button">Algebra 1</button>
-                            <button class="subject-button">Geometry</button>
-                            <button class="subject-button">Algebra 2</button>
                             <button class="subject-button">US History</button>
                             <button class="subject-button">World Geography</button>
-                            <button class="subject-button">English 9</button>
-                            <button class="subject-button">English 10</button>
+                            <button class="subject-button">English I</button>
+                            <button class="subject-button">English II</button>
+                            <button class="subject-button">Literature</button>
                         </div>
                     </div>
                 </div>
@@ -723,36 +1093,28 @@
             <nav class="sidebar">
                 <div class="nav-section">
                     <div class="nav-title">Middle School</div>
-                    <div class="nav-item">
-                        <span>Grade 6 Math</span>
-                        <span class="chevron">›</span>
-                    </div>
-                    <div class="nav-item">
-                        <span>Grade 6 Science</span>
-                        <span class="chevron">›</span>
-                    </div>
-                    <div class="nav-item">
-                        <span>Grade 6 Social Studies</span>
-                        <span class="chevron">›</span>
-                    </div>
-                    <div class="nav-item">
-                        <span>Grade 7 Math</span>
-                        <span class="chevron">›</span>
-                    </div>
-                    <div class="nav-item">
-                        <span>Grade 7 Science</span>
-                        <span class="chevron">›</span>
-                    </div>
-                    <div class="nav-item">
-                        <span>Grade 7 Social Studies</span>
-                        <span class="chevron">›</span>
-                    </div>
                     <div class="nav-item active">
-                        <span>Grade 8 Earth Science</span>
+                        <span>Earth Science</span>
                         <span class="chevron">›</span>
                     </div>
                     <div class="nav-item">
-                        <span>Grade 8 Math</span>
+                        <span>Physical Science</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Life Science</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>World History</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>US History</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Civics</span>
                         <span class="chevron">›</span>
                     </div>
                 </div>
@@ -772,18 +1134,6 @@
                         <span class="chevron">›</span>
                     </div>
                     <div class="nav-item">
-                        <span>Algebra 1</span>
-                        <span class="chevron">›</span>
-                    </div>
-                    <div class="nav-item">
-                        <span>Geometry</span>
-                        <span class="chevron">›</span>
-                    </div>
-                    <div class="nav-item">
-                        <span>Algebra 2</span>
-                        <span class="chevron">›</span>
-                    </div>
-                    <div class="nav-item">
                         <span>US History</span>
                         <span class="chevron">›</span>
                     </div>
@@ -792,11 +1142,15 @@
                         <span class="chevron">›</span>
                     </div>
                     <div class="nav-item">
-                        <span>English 9</span>
+                        <span>English I</span>
                         <span class="chevron">›</span>
                     </div>
                     <div class="nav-item">
-                        <span>English 10</span>
+                        <span>English II</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="nav-item">
+                        <span>Literature</span>
                         <span class="chevron">›</span>
                     </div>
                 </div>
@@ -804,27 +1158,185 @@
 
             <main class="content">
                 <div class="breadcrumb">
-                    <a onclick="showLanding()">The DataHub</a> / <a href="#">Middle School</a> / Grade 8 Earth Science
+                    <a onclick="goHome()">The DataHub</a> / <a href="#">Middle School</a> / Earth Science
                 </div>
 
                 <div class="subject-header">
-                    <h1 class="subject-title">Grade 8 Earth Science</h1>
+                    <h1 class="subject-title">Earth Science</h1>
                     <div class="subject-meta">
                         <span>By DataHub Team</span>
                         <span>•</span>
-                        <span>28 lessons</span>
+                        <span>45 lessons</span>
                         <span>•</span>
-                        <span>15 datasets</span>
+                        <span>20 datasets</span>
                     </div>
                     <p class="subject-description">
-                        Explore Earth's systems through the lens of data science. Students will analyze real-world datasets to understand weather patterns, climate change, geological processes, and environmental science while building essential data literacy skills. Each lesson aligns with NGSS standards and provides scaffolded data science instruction. <a href="#" class="highlight-link">View full curriculum guide</a>.
+                        Explore Earth's systems through the lens of data science. Students will analyze real-world datasets to understand weather patterns, climate change, geological processes, and environmental science while building essential data literacy skills. Each lesson aligns with NGSS standards and provides scaffolded data science instruction throughout the academic year.
                     </p>
                 </div>
 
+                <!-- Unit 1: Introduction to Earth Science & Data -->
                 <div class="topic-section">
                     <div class="topic-header">
-                        <h2 class="topic-title">Weather and Climate Patterns</h2>
-                        <p class="topic-description">Students analyze meteorological data to understand weather systems, climate patterns, and the difference between weather and climate using statistical analysis and data visualization.</p>
+                        <h2 class="topic-title">Unit 1: Introduction to Earth Science & Scientific Data</h2>
+                        <p class="topic-description">Students learn the fundamentals of Earth science and how scientists use data to understand our planet. Introduces basic data collection, organization, and visualization techniques.</p>
+                    </div>
+                    <div class="lessons-grid">
+                        <div class="lesson-card data-viz">
+                            <div class="lesson-header">
+                                <div class="lesson-icon data-viz">📊</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Collecting and Organizing Earth Data</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Data Collection</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Students learn how Earth scientists collect data through various instruments and organize it for analysis. Introduction to spreadsheets and data tables.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">📈 Sample Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unit 2: Earth's Layers and Structure -->
+                <div class="topic-section">
+                    <div class="topic-header">
+                        <h2 class="topic-title">Unit 2: Earth's Layers and Internal Structure</h2>
+                        <p class="topic-description">Investigate Earth's internal structure using seismic data and analyze how scientists use data to understand what's beneath the surface.</p>
+                    </div>
+                    <div class="lessons-grid">
+                        <div class="lesson-card analysis">
+                            <div class="lesson-header">
+                                <div class="lesson-icon analysis">🌍</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Seismic Wave Data Analysis</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Data Analysis</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Students analyze seismic wave data to understand Earth's layers and how scientists discovered the structure of our planet's interior.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">🌊 Seismic Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag interactive">📈 Graphing Tool</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unit 3: Plate Tectonics -->
+                <div class="topic-section">
+                    <div class="topic-header">
+                        <h2 class="topic-title">Unit 3: Plate Tectonics and Earth's Movement</h2>
+                        <p class="topic-description">Explore how Earth's tectonic plates move and interact using GPS data, earthquake patterns, and volcanic activity datasets.</p>
+                    </div>
+                    <div class="lessons-grid">
+                        <div class="lesson-card analysis">
+                            <div class="lesson-header">
+                                <div class="lesson-icon analysis">🌋</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Earthquake Pattern Investigation</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Geospatial Analysis</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Students map global earthquake data to identify patterns along tectonic plate boundaries and analyze the relationship between magnitude, depth, and location.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">🌍 Earthquake Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag interactive">🗺️ Mapping Tool</span>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card data-viz">
+                            <div class="lesson-header">
+                                <div class="lesson-icon data-viz">🗺️</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Plate Movement and GPS Data</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Data Visualization</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Using GPS data, students track how tectonic plates move over time and visualize plate boundaries and movement rates.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">📡 GPS Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag interactive">🌐 Interactive Map</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unit 4: Rocks and Minerals -->
+                <div class="topic-section">
+                    <div class="topic-header">
+                        <h2 class="topic-title">Unit 4: Rocks, Minerals, and the Rock Cycle</h2>
+                        <p class="topic-description">Classify rocks and minerals using data about their properties and analyze how the rock cycle transforms Earth's materials over time.</p>
+                    </div>
+                    <div class="lessons-grid">
+                        <div class="lesson-card statistical">
+                            <div class="lesson-header">
+                                <div class="lesson-icon statistical">💎</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Mineral Property Classification</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Classification & Analysis</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Students use datasets of mineral properties (hardness, density, color) to create classification systems and identify unknown minerals.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">💎 Mineral Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unit 5: Earth's History & Fossils -->
+                <div class="topic-section">
+                    <div class="topic-header">
+                        <h2 class="topic-title">Unit 5: Earth's History and the Fossil Record</h2>
+                        <p class="topic-description">Analyze fossil data to understand Earth's history, mass extinctions, and how life has evolved over geological time.</p>
+                    </div>
+                    <div class="lessons-grid">
+                        <div class="lesson-card data-viz">
+                            <div class="lesson-header">
+                                <div class="lesson-icon data-viz">🦴</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Fossil Record Timeline Analysis</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Data Visualization</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Students create timeline visualizations of the fossil record to understand mass extinctions and the appearance of major life forms throughout Earth's history.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">🦖 Fossil Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag interactive">📊 Timeline Tool</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unit 6: Weather and Climate -->
+                <div class="topic-section">
+                    <div class="topic-header">
+                        <h2 class="topic-title">Unit 6: Weather Patterns and Atmospheric Science</h2>
+                        <p class="topic-description">Students analyze meteorological data to understand weather systems, atmospheric patterns, and the difference between weather and climate using statistical analysis.</p>
                     </div>
                     <div class="lessons-grid">
                         <div class="lesson-card data-viz">
@@ -837,7 +1349,7 @@
                                 </div>
                             </div>
                             <p class="lesson-description">
-                                Students create visualizations using 10 years of local weather station data to identify patterns in temperature, precipitation, and seasonal changes. Introduces basic graphing and trend analysis.
+                                Students create visualizations using 10 years of local weather station data to identify patterns in temperature, precipitation, and seasonal changes.
                             </p>
                             <div class="lesson-resources">
                                 <span class="resource-tag dataset">📈 Weather Dataset (CSV)</span>
@@ -886,9 +1398,10 @@
                     </div>
                 </div>
 
+                <!-- Unit 7: Water Cycle and Hydrosphere -->
                 <div class="topic-section">
                     <div class="topic-header">
-                        <h2 class="topic-title">Earth's Water Systems</h2>
+                        <h2 class="topic-title">Unit 7: The Water Cycle and Earth's Hydrosphere</h2>
                         <p class="topic-description">Explore the water cycle, ocean currents, and water quality through data analysis of hydrological datasets and water monitoring stations.</p>
                     </div>
                     <div class="lessons-grid">
@@ -929,31 +1442,145 @@
                                 <span class="resource-tag">📈 Analysis Templates</span>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="topic-section">
-                    <div class="topic-header">
-                        <h2 class="topic-title">Geological Processes and Earth's Structure</h2>
-                        <p class="topic-description">Investigate earthquake patterns, volcanic activity, and geological formations using seismic data and geological surveys.</p>
-                    </div>
-                    <div class="lessons-grid">
                         <div class="lesson-card analysis">
                             <div class="lesson-header">
-                                <div class="lesson-icon analysis">🌋</div>
+                                <div class="lesson-icon analysis">🌊</div>
                                 <div class="lesson-info">
-                                    <h3 class="lesson-title">Earthquake Pattern Investigation</h3>
+                                    <h3 class="lesson-title">Ocean Current Patterns</h3>
                                     <div class="lesson-author">By DataHub Team</div>
                                     <div class="lesson-type">Geospatial Analysis</div>
                                 </div>
                             </div>
                             <p class="lesson-description">
-                                Students map global earthquake data to identify patterns along tectonic plate boundaries and analyze the relationship between magnitude, depth, and location.
+                                Students analyze ocean temperature and current data to understand global ocean circulation patterns and their impact on climate and weather.
                             </p>
                             <div class="lesson-resources">
-                                <span class="resource-tag dataset">🌍 Earthquake Data (CSV)</span>
+                                <span class="resource-tag dataset">🌊 Ocean Data (CSV)</span>
                                 <span class="resource-tag">📄 Lesson Plan</span>
-                                <span class="resource-tag interactive">🗺️ Mapping Tool</span>
+                                <span class="resource-tag interactive">🗺️ Current Maps</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unit 8: Climate Change -->
+                <div class="topic-section">
+                    <div class="topic-header">
+                        <h2 class="topic-title">Unit 8: Climate Change and Human Impact</h2>
+                        <p class="topic-description">Analyze long-term climate data to understand climate change trends, causes, and potential impacts on Earth's systems.</p>
+                    </div>
+                    <div class="lessons-grid">
+                        <div class="lesson-card statistical">
+                            <div class="lesson-header">
+                                <div class="lesson-icon statistical">🌡️</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Global Temperature Trend Analysis</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Statistical Analysis</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Students analyze 150+ years of global temperature data to identify trends, calculate rates of change, and understand the evidence for climate change.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">🌍 Temperature Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag">📊 Graphing Templates</span>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card analysis">
+                            <div class="lesson-header">
+                                <div class="lesson-icon analysis">❄️</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Arctic Ice Coverage Changes</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Data Analysis</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Using satellite data, students track changes in Arctic sea ice coverage over decades and analyze the implications for global climate systems.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">🛰️ Satellite Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag interactive">📈 Time Series Tool</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unit 9: Natural Resources -->
+                <div class="topic-section">
+                    <div class="topic-header">
+                        <h2 class="topic-title">Unit 9: Natural Resources and Sustainability</h2>
+                        <p class="topic-description">Examine Earth's natural resources through data on consumption, availability, and environmental impact to understand sustainability challenges.</p>
+                    </div>
+                    <div class="lessons-grid">
+                        <div class="lesson-card data-viz">
+                            <div class="lesson-header">
+                                <div class="lesson-icon data-viz">⚡</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Energy Consumption Patterns</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Data Visualization</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Students analyze global energy consumption data by source type and country to understand current energy use patterns and sustainability challenges.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">⚡ Energy Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag interactive">📊 Interactive Charts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unit 10: Space and Astronomy -->
+                <div class="topic-section">
+                    <div class="topic-header">
+                        <h2 class="topic-title">Unit 10: Earth in Space - Astronomy and Our Solar System</h2>
+                        <p class="topic-description">Explore Earth's place in the solar system using astronomical data, planetary comparisons, and space exploration datasets.</p>
+                    </div>
+                    <div class="lessons-grid">
+                        <div class="lesson-card data-viz">
+                            <div class="lesson-header">
+                                <div class="lesson-icon data-viz">🌙</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Planetary Data Comparison</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Comparative Analysis</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Students compare data about planetary characteristics (size, composition, orbit, temperature) to understand what makes Earth unique and habitable.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">🪐 Planetary Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag interactive">🌌 Solar System Model</span>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card statistical">
+                            <div class="lesson-header">
+                                <div class="lesson-icon statistical">🌙</div>
+                                <div class="lesson-info">
+                                    <h3 class="lesson-title">Moon Phase and Tide Data</h3>
+                                    <div class="lesson-author">By DataHub Team</div>
+                                    <div class="lesson-type">Pattern Analysis</div>
+                                </div>
+                            </div>
+                            <p class="lesson-description">
+                                Using tide data and moon phase information, students analyze the relationship between lunar cycles and tidal patterns.
+                            </p>
+                            <div class="lesson-resources">
+                                <span class="resource-tag dataset">🌊 Tide Data (CSV)</span>
+                                <span class="resource-tag">📄 Lesson Plan</span>
+                                <span class="resource-tag">📈 Analysis Guide</span>
                             </div>
                         </div>
                     </div>
@@ -963,13 +1590,81 @@
     </div>
 
     <script>
+        let isLoggedIn = false;
+        let currentUser = null;
+        let chatMessages = [];
+
+        function showLogin() {
+            document.getElementById('landing').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('course').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'flex';
+        }
+
+        function showLogin() {
+            document.getElementById('landing').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('course').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'flex';
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            console.log('Login attempted'); // Debug line
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            console.log('Username:', username); // Debug line
+            
+            if (username === 'hkurzweil' && password === 'datarocks!') {
+                console.log('Login successful'); // Debug line
+                isLoggedIn = true;
+                currentUser = 'Hannah Kurzweil';
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                document.getElementById('userMenu').innerHTML = `
+                    <div class="user-info">
+                        <span>👤</span>
+                        <span>${currentUser}</span>
+                    </div>
+                    <button class="logout-btn" onclick="handleLogout()">Sign Out</button>
+                `;
+            } else {
+                console.log('Login failed'); // Debug line
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }
+
+        function handleLogout() {
+            isLoggedIn = false;
+            currentUser = null;
+            chatMessages = [];
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('userMenu').innerHTML = `
+                <button class="login-btn" onclick="showLogin()">Sign In</button>
+            `;
+            showLanding();
+        }
+
+        function goHome() {
+            if (isLoggedIn) {
+                document.getElementById('landing').style.display = 'none';
+                document.getElementById('course').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+            } else {
+                showLanding();
+            }
+        }
+
         function showLanding() {
             document.getElementById('landing').style.display = 'block';
             document.getElementById('course').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'none';
         }
 
         function showEarthScience() {
             document.getElementById('landing').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'none';
             document.getElementById('course').style.display = 'block';
         }
 
@@ -978,6 +1673,80 @@
                 behavior: 'smooth' 
             });
         }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+            
+            // Add user message
+            addMessage('user', message);
+            input.value = '';
+            
+            // Simulate AI response
+            setTimeout(() => {
+                handleAtlasResponse(message);
+            }, 800);
+        }
+
+        function addMessage(sender, content) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = sender === 'atlas' ? '🤖' : '👤';
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            
+            if (sender === 'atlas' && content.includes('<a')) {
+                messageContent.innerHTML = content;
+            } else {
+                messageContent.textContent = content;
+            }
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(messageContent);
+            chatContainer.appendChild(messageDiv);
+            
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function handleAtlasResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            if (lowerMessage.includes('genetics') || lowerMessage.includes('heredity') || lowerMessage.includes('dna')) {
+                addMessage('atlas', `Great choice! Genetics is perfect for data science integration. I found some excellent resources for teaching genetics:\n\n📊 Punnett Square Probability Analysis - Students use real genetic datasets to calculate inheritance probabilities\n\n🧬 Human Genetic Variation Database - Analyze SNP data from diverse populations\n\n📈 Pedigree Chart Analysis - Work with family trait inheritance data\n\nTo customize these resources for your class, I'd love to know:\n\n• How many class periods do you have for this unit?\n• What's your students' current comfort level with statistics?\n• Are you focusing on Mendelian genetics, or also covering more complex inheritance patterns?`);
+            } else if (lowerMessage.includes('evolution') || lowerMessage.includes('natural selection')) {
+                addMessage('atlas', `Evolution is a fantastic topic for data analysis! Here are some resources I recommend:\n\n🦎 Finch Beak Measurement Data - Classic Darwin's finches dataset showing evolution in action\n\n🦋 Peppered Moth Population Changes - Industrial revolution case study with real historical data\n\n🧬 Antibiotic Resistance Trends - Current bacterial evolution data from CDC\n\nTo tailor these to your Biology class:\n\n• Do you want to focus on microevolution or macroevolution?\n• Would your students benefit from historical data or current examples?\n• How much time can you dedicate to data analysis vs. conceptual discussion?`);
+            } else if (lowerMessage.includes('ecosystem') || lowerMessage.includes('ecology')) {
+                addMessage('atlas', `Ecosystems provide amazing opportunities for data science! Check out these resources:\n\n🌲 Forest Biodiversity Surveys - Real field data from ecological monitoring projects\n\n🐟 Predator-Prey Population Dynamics - Time series data showing population cycles\n\n🌡️ Climate Impact on Species Distribution - Geographic and temporal data on species migration\n\nLet's customize these for your class:\n\n• Are you teaching a local ecosystem or a specific biome?\n• Do your students have experience creating graphs and charts?\n• Would you prefer hands-on data collection or analysis of existing datasets?`);
+            } else if (lowerMessage.includes('photosynthesis') || lowerMessage.includes('cellular respiration')) {
+                addMessage('atlas', `Excellent! Photosynthesis offers great quantitative learning opportunities:\n\n🌱 Light Intensity vs. Photosynthesis Rate - Experimental data students can replicate\n\n🍃 CO2 Concentration Effects - Real atmospheric and lab data\n\n📊 Chlorophyll Absorption Spectrum - Wavelength data for graphing practice\n\nTo make these work perfectly for your students:\n\n• Are you covering just photosynthesis or both cellular processes?\n• Do you have access to lab equipment for students to collect their own data?\n• What graphing tools or software do your students typically use?`);
+            } else if (lowerMessage.includes('help') || lowerMessage.includes('what can you do')) {
+                addMessage('atlas', `I'm DataPal, and I'm here to help you integrate data science into your teaching! I can:\n\n• Find datasets and lessons for any biology or chemistry topic\n• Suggest ways to incorporate data analysis into your existing curriculum\n• Help customize resources for your specific class needs\n• Recommend appropriate data visualization techniques\n• Connect you with real-world scientific datasets\n\nWhat topic are you teaching next? I'd love to find resources that will excite your students!`);
+            } else {
+                addMessage('atlas', `That sounds like an interesting topic! While I'm still learning about all the resources in our database for that specific subject, I can help you with:\n\n• Biology topics (genetics, evolution, ecology, cell biology, human body systems)\n• Chemistry concepts (periodic trends, reaction rates, stoichiometry)\n• Earth Science lessons (climate, weather, geology)\n\nCould you tell me more about what specific aspect you'd like to teach with data? Or try asking about genetics, ecosystems, or evolution - I have great resources for those!`);
+            }
+        }
+
+        // Allow Enter key to send messages
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) {
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+        });
+
+        // Show landing page by default
+        showLanding();
     </script>
 </body>
 </html>
