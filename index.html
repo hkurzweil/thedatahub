@@ -230,6 +230,126 @@
             margin-bottom: 2rem;
         }
 
+        .dashboard-bottom {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .dashboard-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-section h3 {
+            color: #4C4C4C;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .feedback-item {
+            background: rgba(98, 144, 200, 0.05);
+            border-left: 4px solid #6290C8;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .feedback-item h4 {
+            color: #4C4C4C;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .feedback-meta {
+            color: #B8B6B6;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feedback-text {
+            color: #4C4C4C;
+            font-size: 0.9rem;
+        }
+
+        .stat-card {
+            background: rgba(239, 74, 35, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #EF4A23;
+            display: block;
+        }
+
+        .stat-label {
+            color: #4C4C4C;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #EF4A23, #6290C8);
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .skill-name {
+            color: #4C4C4C;
+            font-weight: 500;
+        }
+
+        .skill-level {
+            color: #6290C8;
+            font-size: 0.9rem;
+        }
+
+        .add-feedback-btn {
+            background: #EF4A23;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .add-feedback-btn:hover {
+            background: #d63e1f;
+        }
+
         .my-courses {
             background: white;
             padding: 2rem;
@@ -928,6 +1048,10 @@
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
+
+            .dashboard-bottom {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -950,7 +1074,7 @@
     <div id="loginPage" class="login-page" style="display: none;">
         <div class="login-container">
             <h2>Welcome to The DataHub</h2>
-            <form onsubmit="handleLogin(event)">
+            <div>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" required>
@@ -959,9 +1083,9 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" required>
                 </div>
-                <button type="submit" class="login-submit">Sign In</button>
+                <button type="button" class="login-submit" onclick="handleLogin()">Sign In</button>
                 <p class="error-message" id="errorMessage">Invalid username or password</p>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -977,11 +1101,11 @@
                 <h2>📚 My Courses</h2>
                 <div class="course-card">
                     <h3>High School Biology</h3>
-                    <p class="course-meta">Grade 10 • 28 students • 5 resources used</p>
+                    <p class="course-meta">Grade 10 • 28 students • 5 resources used this month</p>
                 </div>
                 <div class="course-card">
                     <h3>High School Chemistry</h3>
-                    <p class="course-meta">Grade 11 • 24 students • 3 resources used</p>
+                    <p class="course-meta">Grade 11 • 24 students • 3 resources used this month</p>
                 </div>
             </div>
 
@@ -1004,6 +1128,74 @@
                 <div class="chat-input-container">
                     <input type="text" class="chat-input" id="chatInput" placeholder="Ask DataPal about resources, datasets, or teaching ideas...">
                     <button class="chat-send" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-bottom">
+            <div class="dashboard-section">
+                <h3>💬 Recent Lesson Feedback</h3>
+                <div class="feedback-item">
+                    <h4>Genetics Probability Analysis</h4>
+                    <div class="feedback-meta">Biology • Used 3 days ago • 4.8/5 rating</div>
+                    <div class="feedback-text">"Students loved working with real genetic data! The Punnett square probability calculations really clicked when they could see actual inheritance patterns."</div>
+                </div>
+                <div class="feedback-item">
+                    <h4>Chemical Reaction Rates Dataset</h4>
+                    <div class="feedback-meta">Chemistry • Used 1 week ago • 4.2/5 rating</div>
+                    <div class="feedback-text">"Great for demonstrating experimental design. Students struggled a bit with the statistical analysis portion."</div>
+                </div>
+                <button class="add-feedback-btn" onclick="showFeedbackForm()">Add Lesson Feedback</button>
+            </div>
+
+            <div class="dashboard-section">
+                <h3>📊 Your Teaching Analytics</h3>
+                <div class="stat-card">
+                    <span class="stat-number">12</span>
+                    <div class="stat-label">Lessons Used This Month</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">4.6/5</span>
+                    <div class="stat-label">Average Student Engagement</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">85%</span>
+                    <div class="stat-label">Data Skills Improvement</div>
+                </div>
+            </div>
+
+            <div class="dashboard-section">
+                <h3>🎯 Your Data Science Journey</h3>
+                <div class="skill-item">
+                    <span class="skill-name">Data Visualization</span>
+                    <span class="skill-level">Advanced</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%;"></div>
+                </div>
+                
+                <div class="skill-item">
+                    <span class="skill-name">Statistical Analysis</span>
+                    <span class="skill-level">Beginner</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%;"></div>
+                </div>
+                
+                <div class="skill-item">
+                    <span class="skill-name">Real-World Datasets</span>
+                    <span class="skill-level">Intermediate</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 70%;"></div>
+                </div>
+                
+                <div class="skill-item">
+                    <span class="skill-name">Student Scaffolding</span>
+                    <span class="skill-level">Expert</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%;"></div>
                 </div>
             </div>
         </div>
@@ -1593,6 +1785,7 @@
         let isLoggedIn = false;
         let currentUser = null;
         let chatMessages = [];
+        let conversationContext = {}; // Track conversation context
 
         function showLogin() {
             document.getElementById('landing').style.display = 'none';
@@ -1608,8 +1801,7 @@
             document.getElementById('loginPage').style.display = 'flex';
         }
 
-        function handleLogin(event) {
-            event.preventDefault();
+        function handleLogin() {
             console.log('Login attempted'); // Debug line
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
@@ -1638,6 +1830,7 @@
             isLoggedIn = false;
             currentUser = null;
             chatMessages = [];
+            conversationContext = {}; // Clear conversation context
             document.getElementById('dashboard').style.display = 'none';
             document.getElementById('userMenu').innerHTML = `
                 <button class="login-btn" onclick="showLogin()">Sign In</button>
@@ -1704,6 +1897,9 @@
             
             if (sender === 'atlas' && content.includes('<a')) {
                 messageContent.innerHTML = content;
+            } else if (sender === 'atlas') {
+                // Convert line breaks to proper HTML for better formatting
+                messageContent.innerHTML = content.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
             } else {
                 messageContent.textContent = content;
             }
@@ -1718,28 +1914,149 @@
         function handleAtlasResponse(userMessage) {
             const lowerMessage = userMessage.toLowerCase();
             
-            if (lowerMessage.includes('genetics') || lowerMessage.includes('heredity') || lowerMessage.includes('dna')) {
-                addMessage('atlas', `Great choice! Genetics is perfect for data science integration. I found some excellent resources for teaching genetics:\n\n📊 Punnett Square Probability Analysis - Students use real genetic datasets to calculate inheritance probabilities\n\n🧬 Human Genetic Variation Database - Analyze SNP data from diverse populations\n\n📈 Pedigree Chart Analysis - Work with family trait inheritance data\n\nTo customize these resources for your class, I'd love to know:\n\n• How many class periods do you have for this unit?\n• What's your students' current comfort level with statistics?\n• Are you focusing on Mendelian genetics, or also covering more complex inheritance patterns?`);
-            } else if (lowerMessage.includes('evolution') || lowerMessage.includes('natural selection')) {
-                addMessage('atlas', `Evolution is a fantastic topic for data analysis! Here are some resources I recommend:\n\n🦎 Finch Beak Measurement Data - Classic Darwin's finches dataset showing evolution in action\n\n🦋 Peppered Moth Population Changes - Industrial revolution case study with real historical data\n\n🧬 Antibiotic Resistance Trends - Current bacterial evolution data from CDC\n\nTo tailor these to your Biology class:\n\n• Do you want to focus on microevolution or macroevolution?\n• Would your students benefit from historical data or current examples?\n• How much time can you dedicate to data analysis vs. conceptual discussion?`);
-            } else if (lowerMessage.includes('ecosystem') || lowerMessage.includes('ecology')) {
-                addMessage('atlas', `Ecosystems provide amazing opportunities for data science! Check out these resources:\n\n🌲 Forest Biodiversity Surveys - Real field data from ecological monitoring projects\n\n🐟 Predator-Prey Population Dynamics - Time series data showing population cycles\n\n🌡️ Climate Impact on Species Distribution - Geographic and temporal data on species migration\n\nLet's customize these for your class:\n\n• Are you teaching a local ecosystem or a specific biome?\n• Do your students have experience creating graphs and charts?\n• Would you prefer hands-on data collection or analysis of existing datasets?`);
-            } else if (lowerMessage.includes('photosynthesis') || lowerMessage.includes('cellular respiration')) {
-                addMessage('atlas', `Excellent! Photosynthesis offers great quantitative learning opportunities:\n\n🌱 Light Intensity vs. Photosynthesis Rate - Experimental data students can replicate\n\n🍃 CO2 Concentration Effects - Real atmospheric and lab data\n\n📊 Chlorophyll Absorption Spectrum - Wavelength data for graphing practice\n\nTo make these work perfectly for your students:\n\n• Are you covering just photosynthesis or both cellular processes?\n• Do you have access to lab equipment for students to collect their own data?\n• What graphing tools or software do your students typically use?`);
-            } else if (lowerMessage.includes('help') || lowerMessage.includes('what can you do')) {
-                addMessage('atlas', `I'm DataPal, and I'm here to help you integrate data science into your teaching! I can:\n\n• Find datasets and lessons for any biology or chemistry topic\n• Suggest ways to incorporate data analysis into your existing curriculum\n• Help customize resources for your specific class needs\n• Recommend appropriate data visualization techniques\n• Connect you with real-world scientific datasets\n\nWhat topic are you teaching next? I'd love to find resources that will excite your students!`);
-            } else {
-                addMessage('atlas', `That sounds like an interesting topic! While I'm still learning about all the resources in our database for that specific subject, I can help you with:\n\n• Biology topics (genetics, evolution, ecology, cell biology, human body systems)\n• Chemistry concepts (periodic trends, reaction rates, stoichiometry)\n• Earth Science lessons (climate, weather, geology)\n\nCould you tell me more about what specific aspect you'd like to teach with data? Or try asking about genetics, ecosystems, or evolution - I have great resources for those!`);
+            // Check for positive response to statistics gap suggestion
+            if (conversationContext.lastTopic === 'genetics' && 
+                (lowerMessage.includes('yes') || lowerMessage.includes('thank') || lowerMessage.includes('please') || 
+                 lowerMessage.includes('that would be great') || lowerMessage.includes('help') || lowerMessage.includes('good idea'))) {
+                
+                addMessage('atlas', `Don't worry, that's exactly why I'm here! 🎯
+
+I don't want these materials to be stagnant, one-size-fits-all resources. They're living, breathing tools we can adapt to your students' needs!
+
+For your genetics unit, I can offer three different approaches:
+
+📋 **Scaffolded Version** - Step-by-step statistical guidance with visual aids and simplified language
+
+📊 **Statistics Foundation Mini-Lesson** - I found a perfect 15-minute probability primer from our Statistics & Data Analysis course (I know you're not teaching that this year, but we can easily adapt this lesson to fit perfectly into your Biology classroom!)
+
+✨ **Modified Assessment** - Alternative ways to demonstrate understanding without heavy statistical computation
+
+Which approach sounds most helpful for your students? I can also connect you with other biology teachers who've successfully adapted these materials for stats-struggling students!`);
+                conversationContext.lastTopic = 'genetics_adaptation';
+                return;
             }
+            
+            // Check for follow-up about statistical difficulties
+            if ((lowerMessage.includes('struggle') || lowerMessage.includes('difficult') || lowerMessage.includes('hard')) && 
+                (lowerMessage.includes('stat') || lowerMessage.includes('math') || lowerMessage.includes('calculation'))) {
+                
+                addMessage('atlas', `Don't worry, that's exactly why I'm here! 🎯
+
+I don't want these materials to be stagnant, one-size-fits-all resources. They're living, breathing tools we can adapt to your students' needs!
+
+For your genetics unit, I can offer three different approaches:
+
+📋 **Scaffolded Version** - Step-by-step statistical guidance with visual aids and simplified language
+
+📊 **Statistics Foundation Mini-Lesson** - I found a perfect 15-minute probability primer from our Statistics & Data Analysis course (I know you're not teaching that this year, but we can easily adapt this lesson to fit perfectly into your Biology classroom!)
+
+✨ **Modified Assessment** - Alternative ways to demonstrate understanding without heavy statistical computation
+
+Which approach sounds most helpful for your students? I can also connect you with other biology teachers who've successfully adapted these materials for stats-struggling students!`);
+                conversationContext.lastTopic = 'genetics_adaptation';
+                return;
+            }
+            
+            // Original genetics response with context setting
+            if (lowerMessage.includes('genetics') || lowerMessage.includes('heredity') || lowerMessage.includes('dna')) {
+                addMessage('atlas', `Great choice! Genetics is perfect for data science integration. I found some excellent resources for teaching genetics:
+
+📊 **Punnett Square Probability Analysis** - Students use real genetic datasets to calculate inheritance probabilities
+
+🧬 **Human Genetic Variation Database** - Analyze SNP data from diverse populations
+
+📈 **Pedigree Chart Analysis** - Work with family trait inheritance data
+
+To customize these resources for your class, I'd love to know:
+
+• How many class periods do you have for this unit?
+• What's your students' current comfort level with statistics?
+• Are you focusing on Mendelian genetics, or also covering more complex inheritance patterns?
+
+📊 **Quick observation:** I've noticed that we haven't really started building Statistical Analysis skills in your data science journey yet. Would you like me to show you some ways we can better approach the genetics material to fill in those gaps while teaching the biology content?`);
+                conversationContext.lastTopic = 'genetics';
+                return;
+            }
+            
+            if (lowerMessage.includes('evolution') || lowerMessage.includes('natural selection')) {
+                addMessage('atlas', `Evolution is a fantastic topic for data analysis! Here are some adaptive resources I recommend:\n\n🦎 **Finch Beak Measurement Data** - Classic Darwin's finches dataset showing evolution in action\n\n🦋 **Peppered Moth Population Changes** - Industrial revolution case study with real historical data\n\n🧬 **Antibiotic Resistance Trends** - Current bacterial evolution data from CDC\n\nI can customize these based on your students' needs:\n\n• Do you want to focus on microevolution or macroevolution?\n• Would your students benefit from historical data or current examples?\n• How much time can you dedicate to data analysis vs. conceptual discussion?\n• What's their comfort level with graphing and trend analysis?`);
+                conversationContext.lastTopic = 'evolution';
+                return;
+            }
+            
+            if (lowerMessage.includes('ecosystem') || lowerMessage.includes('ecology')) {
+                addMessage('atlas', `Ecosystems provide amazing opportunities for data science! Check out these living resources:\n\n🌲 **Forest Biodiversity Surveys** - Real field data from ecological monitoring projects\n\n🐟 **Predator-Prey Population Dynamics** - Time series data showing population cycles\n\n🌡️ **Climate Impact on Species Distribution** - Geographic and temporal data on species migration\n\nLet's customize these for your unique classroom:\n\n• Are you teaching a local ecosystem or a specific biome?\n• Do your students have experience creating graphs and charts?\n• Would you prefer hands-on data collection or analysis of existing datasets?\n• Should we include social justice angles like environmental equity?`);
+                conversationContext.lastTopic = 'ecosystems';
+                return;
+            }
+            
+            if (lowerMessage.includes('photosynthesis') || lowerMessage.includes('cellular respiration')) {
+                addMessage('atlas', `Excellent! Photosynthesis offers great quantitative learning opportunities:\n\n🌱 **Light Intensity vs. Photosynthesis Rate** - Experimental data students can replicate\n\n🍃 **CO2 Concentration Effects** - Real atmospheric and lab data\n\n📊 **Chlorophyll Absorption Spectrum** - Wavelength data for graphing practice\n\nI can adapt these to work perfectly for your students:\n\n• Are you covering just photosynthesis or both cellular processes?\n• Do you have access to lab equipment for students to collect their own data?\n• What graphing tools or software do your students typically use?\n• How comfortable are they with experimental design concepts?`);
+                conversationContext.lastTopic = 'photosynthesis';
+                return;
+            }
+            
+            if (lowerMessage.includes('help') || lowerMessage.includes('what can you do')) {
+                addMessage('atlas', `I'm DataPal, and I'm here to make data science education accessible and adaptable! 🚀
+
+I can:
+
+• **Find & Customize Resources** for any biology or chemistry topic
+• **Suggest Adaptive Approaches** for different student skill levels
+• **Provide Scaffolding Options** when students struggle with concepts
+• **Connect You with Peers** who've used similar resources successfully
+• **Recommend Assessment Alternatives** for diverse learners
+• **Help You Track Impact** and improve over time
+
+Remember: These aren't static worksheets - they're living resources we mold to fit YOUR students' needs!
+
+What topic are you teaching next? I'd love to find resources that will excite your students!`);
+                return;
+            }
+            
+            // Default response
+            addMessage('atlas', `That sounds like an interesting topic! While I'm still learning about all the resources in our database for that specific subject, I can help you with:
+
+• **Biology topics** (genetics, evolution, ecology, cell biology, human body systems)
+• **Chemistry concepts** (periodic trends, reaction rates, stoichiometry)  
+• **Earth Science lessons** (climate, weather, geology)
+
+The best part? Every resource can be adapted to your students' needs - from beginner-friendly versions to advanced analytical challenges.
+
+Could you tell me more about what specific aspect you'd like to teach with data? Or try asking about genetics, ecosystems, or evolution - I have lots of adaptive resources for those!`);
         }
 
-        // Allow Enter key to send messages
+        function showFeedbackForm() {
+            alert('Feedback form would open here! 📝\n\nIn the full version, teachers could:\n• Rate lesson effectiveness (1-5)\n• Share what worked well\n• Note student challenges\n• Upload student work samples\n• Connect with other teachers using the same resource');
+        }
+
+        // Allow Enter key to send messages and login
         document.addEventListener('DOMContentLoaded', function() {
             const chatInput = document.getElementById('chatInput');
             if (chatInput) {
                 chatInput.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') {
                         sendMessage();
+                    }
+                });
+            }
+            
+            // Add Enter key support for login
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            
+            if (usernameInput) {
+                usernameInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleLogin();
+                    }
+                });
+            }
+            
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleLogin();
                     }
                 });
             }
