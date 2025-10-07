@@ -1162,12 +1162,16 @@
                     <span class="stat-number">85%</span>
                     <div class="stat-label">Data Skills Improvement</div>
                 </div>
+                <div class="stat-card">
+                    <span class="stat-number">22/83</span>
+                    <div class="stat-label">Data Science Learning Progression Concepts</div>
+                </div>
             </div>
 
             <div class="dashboard-section">
                 <h3>🎯 Your Data Science Journey</h3>
                 <div class="skill-item">
-                    <span class="skill-name">Data Visualization</span>
+                    <span class="skill-name">Dispositions & Responsibility</span>
                     <span class="skill-level">Advanced</span>
                 </div>
                 <div class="progress-bar">
@@ -1175,7 +1179,15 @@
                 </div>
                 
                 <div class="skill-item">
-                    <span class="skill-name">Statistical Analysis</span>
+                    <span class="skill-name">Creation & Curation</span>
+                    <span class="skill-level">Beginner</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 35%;"></div>
+                </div>
+                
+                <div class="skill-item">
+                    <span class="skill-name">Analysis & Modeling Techniques</span>
                     <span class="skill-level">Beginner</span>
                 </div>
                 <div class="progress-bar">
@@ -1183,19 +1195,19 @@
                 </div>
                 
                 <div class="skill-item">
-                    <span class="skill-name">Real-World Datasets</span>
+                    <span class="skill-name">Interpreting Problems & Results</span>
                     <span class="skill-level">Intermediate</span>
                 </div>
                 <div class="progress-bar">
-                    <div class="progress-fill" style="width: 70%;"></div>
+                    <div class="progress-fill" style="width: 60%;"></div>
                 </div>
                 
                 <div class="skill-item">
-                    <span class="skill-name">Student Scaffolding</span>
-                    <span class="skill-level">Expert</span>
+                    <span class="skill-name">Visualization & Communication</span>
+                    <span class="skill-level">Intermediate</span>
                 </div>
                 <div class="progress-bar">
-                    <div class="progress-fill" style="width: 95%;"></div>
+                    <div class="progress-fill" style="width: 65%;"></div>
                 </div>
             </div>
         </div>
@@ -1228,7 +1240,7 @@
                     <div class="feature-card">
                         <div class="feature-icon blue">🎯</div>
                         <h3 class="feature-title">Standards-Aligned</h3>
-                        <p class="feature-description">All activities align with state and national standards while building essential data literacy skills students need for the 21st century.</p>
+                        <p class="feature-description">All activities align with state and national standards while building essential data literacy skills students need for the 21st century. Content follows the <a href="https://datasciencelearning.org/" target="_blank" style="color: #6290C8; text-decoration: none; font-weight: 500;">Data Science Learning Progressions</a> framework to ensure systematic skill development.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon peach">⚡</div>
@@ -1363,7 +1375,7 @@
                         <span>20 datasets</span>
                     </div>
                     <p class="subject-description">
-                        Explore Earth's systems through the lens of data science. Students will analyze real-world datasets to understand weather patterns, climate change, geological processes, and environmental science while building essential data literacy skills. Each lesson aligns with NGSS standards and provides scaffolded data science instruction throughout the academic year.
+                        Explore Earth's systems through the lens of data science. Students will analyze real-world datasets to understand weather patterns, climate change, geological processes, and environmental science while building essential data literacy skills. Each lesson aligns with NGSS standards and provides scaffolded data science instruction throughout the academic year, following the <a href="https://datasciencelearning.org/" target="_blank" class="highlight-link">Data Science Learning Progressions</a> framework.
                     </p>
                 </div>
 
@@ -1917,9 +1929,10 @@
             // Check for positive response to statistics gap suggestion
             if (conversationContext.lastTopic === 'genetics' && 
                 (lowerMessage.includes('yes') || lowerMessage.includes('thank') || lowerMessage.includes('please') || 
-                 lowerMessage.includes('that would be great') || lowerMessage.includes('help') || lowerMessage.includes('good idea'))) {
+                 lowerMessage.includes('that would be great') || lowerMessage.includes('help') || lowerMessage.includes('good idea') ||
+                 lowerMessage.includes('comfort level') || lowerMessage.includes('not sure') || lowerMessage.includes('struggle'))) {
                 
-                addMessage('atlas', `Don't worry, that's exactly why I'm here! 🎯
+                addMessage('atlas', `Don't worry, that's exactly why I'm here! Building confidence in both you and your students is key to successful data science integration.
 
 I don't want these materials to be stagnant, one-size-fits-all resources. They're living, breathing tools we can adapt to your students' needs!
 
@@ -1927,9 +1940,11 @@ For your genetics unit, I can offer three different approaches:
 
 📋 **Scaffolded Version** - Step-by-step statistical guidance with visual aids and simplified language
 
-📊 **Statistics Foundation Mini-Lesson** - I found a perfect 15-minute probability primer from our Statistics & Data Analysis course (I know you're not teaching that this year, but we can easily adapt this lesson to fit perfectly into your Biology classroom!)
+📊 **Statistics Foundation Mini-Lesson** - I found a perfect 15-minute probability primer from our Statistics & Data Analysis course (I know you're not teaching that this year, but we can easily adapt this lesson to fit perfectly into your Biology classroom!) This lesson will boost both your confidence and your students' comfort level with statistical concepts.
 
 ✨ **Modified Assessment** - Alternative ways to demonstrate understanding without heavy statistical computation
+
+The Statistics mini-lesson is especially powerful because when you feel confident explaining the concepts, your students pick up on that energy and become more engaged with the material!
 
 Which approach sounds most helpful for your students? I can also connect you with other biology teachers who've successfully adapted these materials for stats-struggling students!`);
                 conversationContext.lastTopic = 'genetics_adaptation';
@@ -1959,7 +1974,9 @@ Which approach sounds most helpful for your students? I can also connect you wit
             
             // Original genetics response with context setting
             if (lowerMessage.includes('genetics') || lowerMessage.includes('heredity') || lowerMessage.includes('dna')) {
-                addMessage('atlas', `Great choice! Genetics is perfect for data science integration. I found some excellent resources for teaching genetics:
+                addMessage('atlas', `Starting a new unit is exciting and a wonderful opportunity to continue integrating the Data Science Learning Progressions into your biology class content!
+
+We have several resources for a genetics unit:
 
 📊 **Punnett Square Probability Analysis** - Students use real genetic datasets to calculate inheritance probabilities
 
@@ -1973,7 +1990,7 @@ To customize these resources for your class, I'd love to know:
 • What's your students' current comfort level with statistics?
 • Are you focusing on Mendelian genetics, or also covering more complex inheritance patterns?
 
-📊 **Quick observation:** I've noticed that we haven't really started building Statistical Analysis skills in your data science journey yet. Would you like me to show you some ways we can better approach the genetics material to fill in those gaps while teaching the biology content?`);
+📊 **Quick observation:** I've noticed that we haven't really started building Analysis & Modeling Techniques skills in your data science journey yet. These genetics lessons have great opportunities to integrate some statistical analysis. Would you like me to show you some ways we can better approach the genetics material to fill in those gaps while teaching the biology content?`);
                 conversationContext.lastTopic = 'genetics';
                 return;
             }
