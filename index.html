@@ -2545,26 +2545,245 @@
             showSection('dashboard');
         }
 
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const container = document.getElementById('chatContainer');
-            const text = input && input.value.trim();
-            if (!text) return;
-            const userMsg = document.createElement('div');
-            userMsg.className = 'message user';
-            userMsg.innerHTML = `<div class="message-avatar">H</div><div class="message-content">${escapeHtml(text)}</div>`;
-            container.appendChild(userMsg);
-            input.value = '';
-            container.scrollTop = container.scrollHeight;
-            // fake bot reply
-            setTimeout(() => {
-                const botMsg = document.createElement('div');
-                botMsg.className = 'message atlas';
-                botMsg.innerHTML = `<div class="message-avatar">🤖</div><div class="message-content">Great question, Hannah! Here's a starter idea: try filtering the dataset to show only events with magnitude ≥ 5 and map them by plate boundary. Want a lesson plan for that?</div>`;
-                container.appendChild(botMsg);
-                container.scrollTop = container.scrollHeight;
-            }, 700);
-        }
+// Add this variable at the top, before any functions
+let conversationContext = {
+    lastTopic: ''
+};
+
+function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    
+    if (message === '') return;
+    
+    // Add user message
+    addMessage('user', message);
+    input.value = '';
+    
+    // Simulate AI response
+    setTimeout(() => {
+        handleAtlasResponse(message);
+    }, 800);
+}
+
+function addMessage(sender, content) {
+    const chatContainer = document.getElementById('chatContainer');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}`;
+    
+    const avatar = document.createElement('div');
+    avatar.className = 'message-avatar';
+    avatar.textContent = sender === 'atlas' ? '🤖' : (sender === 'user' ? 'H' : '👤');
+    
+    const messageContent = document.createElement('div');
+    messageContent.className = 'message-content';
+    
+    if (sender === 'atlas' && content.includes('<a')) {
+        messageContent.innerHTML = content;
+    } else if (sender === 'atlas') {
+        // Convert line breaks to proper HTML for better formatting
+        messageContent.innerHTML = content.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+    } else {
+        messageContent.textContent = content;
+    }
+    
+    messageDiv.appendChild(avatar);
+    messageDiv.appendChild(messageContent);
+    chatContainer.appendChild(messageDiv);
+    
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function handleAtlasResponse(userMessage) {
+    const lowerMessage = userMessage.toLowerCase();
+    
+    // Check for positive response to statistics gap suggestion
+    if (conversationContext.lastTopic === 'genetics' && 
+        (lowerMessage.includes('yes') || lowerMessage.includes('thank') || lowerMessage.includes('please') || 
+         lowerMessage.includes('that would be great') || lowerMessage.includes('help') || lowerMessage.includes('good idea') ||
+         lowerMessage.includes('comfort level') || lowerMessage.includes('not sure') || lowerMessage.includes('struggle'))) {
+        
+        addMessage('atlas', `Don't worry, that's exactly why I'm here! Building confidence in both you and your students is key to successful data science integration.
+
+I don't want these materials to be stagnant, one-size-fits-all resources. They're living, breathing tools we can adapt to your students' needs!
+
+For your genetics unit, I can offer three different approaches:
+
+📋 **Scaffolded Version** - Step-by-step statistical guidance with visual aids and simplified language
+
+📊 **Statistics Foundation Mini-Lesson** - I found a perfect 15-minute probability primer from our Statistics & Data Analysis course (I know you're not teaching that this year, but we can easily adapt this lesson to fit perfectly into your Biology classroom!) This lesson will boost both your confidence and your students' comfort level with statistical concepts.
+
+✨ **Modified Assessment** - Alternative ways to demonstrate understanding without heavy statistical computation
+
+The Statistics mini-lesson is especially powerful because when you feel confident explaining the concepts, your students pick up on that energy and become more engaged with the material!
+
+Which approach sounds most helpful for your students? I can also connect you with other biology teachers who've successfully adapted these materials for stats-struggling students!`);
+        conversationContext.lastTopic = 'genetics_adaptation';
+        return;
+    }
+    
+    // Check for follow-up about statistical difficulties
+    if ((lowerMessage.includes('struggle') || lowerMessage.includes('difficult') || lowerMessage.includes('hard')) && 
+        (lowerMessage.includes('stat') || lowerMessage.includes('math') || lowerMessage.includes('calculation'))) {
+        
+        addMessage('atlas', `Don't worry, that's exactly why I'm here! 🎯
+
+I don't want these materials to be stagnant, one-size-fits-all resources. They're living, breathing tools we can adapt to your students' needs!
+
+For your genetics unit, I can offer three different approaches:
+
+📋 **Scaffolded Version** - Step-by-step statistical guidance with visual aids and simplified language
+
+📊 **Statistics Foundation Mini-Lesson** - I found a perfect 15-minute probability primer from our Statistics & Data Analysis course (I know you're not teaching that this year, but we can easily adapt this lesson to fit perfectly into your Biology classroom!)
+
+✨ **Modified Assessment** - Alternative ways to demonstrate understanding without heavy statistical computation
+
+Which approach sounds most helpful for your students? I can also connect you with other biology teachers who've successfully adapted these materials for stats-struggling students!`);
+        conversationContext.lastTopic = 'genetics_adaptation';
+        return;
+    }
+    
+    // Original genetics response with context setting
+    if (lowerMessage.includes('genetics') || lowerMessage.includes('heredity') || lowerMessage.includes('dna')) {
+        addMessage('atlas', `Starting a new unit is exciting and a wonderful opportunity to continue integrating the Data Science Learning Progressions into your biology class content!
+
+We have several resources for a genetics unit:
+
+📊 **Punnett Square Probability Analysis** - Students use real genetic datasets to calculate inheritance probabilities
+
+🧬 **Human Genetic Variation Database** - Analyze SNP data from diverse populations
+
+📈 **Pedigree Chart Analysis** - Work with family trait inheritance data
+
+To customize these resources for your class, I'd love to know:
+
+- How many class periods do you have for this unit?
+- What's your students' current comfort level with statistics?
+- Are you focusing on Mendelian genetics, or also covering more complex inheritance patterns?
+
+📊 **Quick observation:** I've noticed that we haven't really started building Analysis & Modeling Techniques skills in your data science journey yet. These genetics lessons have great opportunities to integrate some statistical analysis. Would you like me to show you some ways we can better approach the genetics material to fill in those gaps while teaching the biology content?`);
+        conversationContext.lastTopic = 'genetics';
+        return;
+    }
+    
+    if (lowerMessage.includes('evolution') || lowerMessage.includes('natural selection')) {
+        addMessage('atlas', `Evolution is a fantastic topic for data analysis! Here are some adaptive resources I recommend:
+
+🦎 **Finch Beak Measurement Data** - Classic Darwin's finches dataset showing evolution in action
+
+🦋 **Peppered Moth Population Changes** - Industrial revolution case study with real historical data
+
+🧬 **Antibiotic Resistance Trends** - Current bacterial evolution data from CDC
+
+I can customize these based on your students' needs:
+
+- Do you want to focus on microevolution or macroevolution?
+- Would your students benefit from historical data or current examples?
+- How much time can you dedicate to data analysis vs. conceptual discussion?
+- What's their comfort level with graphing and trend analysis?`);
+        conversationContext.lastTopic = 'evolution';
+        return;
+    }
+    
+    if (lowerMessage.includes('ecosystem') || lowerMessage.includes('ecology')) {
+        addMessage('atlas', `Ecosystems provide amazing opportunities for data science! Check out these living resources:
+
+🌲 **Forest Biodiversity Surveys** - Real field data from ecological monitoring projects
+
+🐟 **Predator-Prey Population Dynamics** - Time series data showing population cycles
+
+🌡️ **Climate Impact on Species Distribution** - Geographic and temporal data on species migration
+
+Let's customize these for your unique classroom:
+
+- Are you teaching a local ecosystem or a specific biome?
+- Do your students have experience creating graphs and charts?
+- Would you prefer hands-on data collection or analysis of existing datasets?
+- Should we include social justice angles like environmental equity?`);
+        conversationContext.lastTopic = 'ecosystems';
+        return;
+    }
+    
+    if (lowerMessage.includes('photosynthesis') || lowerMessage.includes('cellular respiration')) {
+        addMessage('atlas', `Excellent! Photosynthesis offers great quantitative learning opportunities:
+
+🌱 **Light Intensity vs. Photosynthesis Rate** - Experimental data students can replicate
+
+🍃 **CO2 Concentration Effects** - Real atmospheric and lab data
+
+📊 **Chlorophyll Absorption Spectrum** - Wavelength data for graphing practice
+
+I can adapt these to work perfectly for your students:
+
+- Are you covering just photosynthesis or both cellular processes?
+- Do you have access to lab equipment for students to collect their own data?
+- What graphing tools or software do your students typically use?
+- How comfortable are they with experimental design concepts?`);
+        conversationContext.lastTopic = 'photosynthesis';
+        return;
+    }
+    
+    // Add earthquake-related responses
+    if (lowerMessage.includes('earthquake') || lowerMessage.includes('plate tectonic') || lowerMessage.includes('seismic')) {
+        addMessage('atlas', `Earthquakes are perfect for teaching data science skills! Here are some resources that align with your Earth Science curriculum:
+
+🌍 **Global Earthquake Tracker** - Interactive dataset with magnitude, depth, and plate boundary data
+
+📊 **Seismic Wave Analysis** - Real seismograph readings students can analyze 
+
+📈 **Earthquake Frequency vs. Magnitude** - Statistical patterns showing power law relationships
+
+For this earthquake unit, I recommend:
+
+- Start with our "Earthquake Pattern Investigation" lesson which has built-in differentiation
+- Students with limited technical skills can use our map filtering tool instead of raw data
+- Consider exploring the "Ring of Fire" dataset which has pre-made visualizations
+
+What aspect of earthquakes are you focusing on with your students? I can help tailor these resources to your specific classroom needs.`);
+        conversationContext.lastTopic = 'earthquakes';
+        return;
+    }
+    
+    if (lowerMessage.includes('help') || lowerMessage.includes('what can you do')) {
+        addMessage('atlas', `I'm DataPal, and I'm here to make data science education accessible and adaptable! 🚀
+
+I can:
+
+- **Find & Customize Resources** for any biology or chemistry topic
+- **Suggest Adaptive Approaches** for different student skill levels
+- **Provide Scaffolding Options** when students struggle with concepts
+- **Connect You with Peers** who've used similar resources successfully
+- **Recommend Assessment Alternatives** for diverse learners
+- **Help You Track Impact** and improve over time
+
+Remember: These aren't static worksheets - they're living resources we mold to fit YOUR students' needs!
+
+What topic are you teaching next? I'd love to find resources that will excite your students!`);
+        return;
+    }
+    
+    // Default response
+    addMessage('atlas', `That sounds like an interesting topic! While I'm still learning about all the resources in our database for that specific subject, I can help you with:
+
+- **Biology topics** (genetics, evolution, ecology, cell biology, human body systems)
+- **Chemistry concepts** (periodic trends, reaction rates, stoichiometry)  
+- **Earth Science lessons** (climate, weather, geology, earthquakes)
+
+The best part? Every resource can be adapted to your students' needs - from beginner-friendly versions to advanced analytical challenges.
+
+Could you tell me more about what specific aspect you'd like to teach with data? Or try asking about earthquakes, genetics, ecosystems, or evolution - I have lots of adaptive resources for those!`);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const chatInput = document.getElementById('chatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    }
+});
 
         function escapeHtml(unsafe) {
             return unsafe.replace(/[&<"']/g, function(m) {
